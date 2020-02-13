@@ -1,0 +1,1 @@
+class ApplicationToken < ApplicationRecord; end

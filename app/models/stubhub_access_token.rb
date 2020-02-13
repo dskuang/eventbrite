@@ -1,0 +1,2 @@
+class StubhubAccessToken < ApplicationRecord
+end

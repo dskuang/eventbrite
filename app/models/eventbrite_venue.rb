@@ -1,0 +1,2 @@
+class EventbriteVenue < ApplicationRecord
+end
