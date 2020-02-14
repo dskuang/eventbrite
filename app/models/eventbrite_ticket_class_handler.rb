@@ -11,10 +11,11 @@ class EventbriteTicketClassHandler
   def execute!
     has_more_items = true
     continuation_key = ''
-    data = fetch_ticket_classes!
-    ticket_classes = data.parsed_response['ticket_classes']
 
     while(has_more_items)
+      data = fetch_ticket_classes!
+      ticket_classes = data.parsed_response['ticket_classes']
+      
       ticket_classes.each do |ticket_data|
         ticket_class = upsert_ticket_class!(ticket_data)
         insert_ticket_log!(ticket_data, ticket_class)
