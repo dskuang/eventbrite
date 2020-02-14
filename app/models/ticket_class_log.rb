@@ -3,10 +3,6 @@ class TicketClassLog < ApplicationRecord
     class_name: 'EventbriteEventTicketClass',
     foreign_key: :eventbrite_ticket_class_id
 
-  belongs_to :event, 
-    class_name: 'EventbriteEvent',
-    foreign_key: :event_id
-
   def self.formatted_data(data, eventbrite_ticket_class_id)
     {
       eventbrite_ticket_class_id: eventbrite_ticket_class_id,

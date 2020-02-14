@@ -21,12 +21,41 @@ class EventbriteTicketClassHandler
       has_more_items = data.parsed_response['pagination']['has_more_items']
       continuation_key = data.parsed_response['pagination']['continuation']
     end
+
+    # queue_up_jobs! if !sales_started? && never_queued_up?
   end
 
   private
 
   def fetch_ticket_classes!
     EventbriteApi.fetch_ticket_class_details!(event_id)
+  end
+
+  def queue_up_jobs!
+    [1, 2, 4, 6, 8, 10, 15, 20, 30].each do |num|
+      queued_up_at = start_date + num.minutes
+
+      sidekiq_id = EventTicketClassWorker.perform_at(queued_up_at, id: saved_event.id)
+
+      SidekiqLog.create!(
+        status:              'unprocessed',
+        eventbrite_event_id: saled_event.id,
+        queued_up_at:        queued_up_at,
+        sidekiq_id:          sidekiq_id
+      )
+    end
+  end
+
+  def never_queued_up?
+
+  end
+
+  def sales_started?
+    start_date < Time.current
+  end
+
+  def start_date
+    saved_event.start_sales_date
   end
 
   def upsert_ticket_class!(data)
