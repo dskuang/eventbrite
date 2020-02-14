@@ -34,7 +34,7 @@ class EventbriteTicketClassHandler
   end
 
   def queue_up_jobs!
-    TIME_INTEREVALS.each do |num|
+    TIME_INTERVALS.each do |num|
       queued_up_at = start_date + num.minutes
 
       sidekiq_id = EventTicketClassWorker.perform_at(queued_up_at, id: saved_event.id)
