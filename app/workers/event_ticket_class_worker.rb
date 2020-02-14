@@ -9,7 +9,7 @@ class EventTicketClassWorker < BaseWorker
     sidekiq_id = Thread.current.object_id.to_s(36)
     sidekiq_log = SidekiqLog.find_by(sidekiq_id: sidekiq_id)
     sidekiq_log.update!(
-      status:      'procesed',
+      status:      'processed',
       finished_at: Time.current
     )
   end
