@@ -41,7 +41,7 @@ class EventbriteTicketClassHandler
 
       SidekiqLog.create!(
         status:              'unprocessed',
-        eventbrite_event_id: sales_event.id,
+        eventbrite_event_id: saved_event.id,
         queued_up_at:        queued_up_at,
         sidekiq_id:          sidekiq_id
       )
