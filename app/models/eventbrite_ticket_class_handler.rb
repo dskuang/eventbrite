@@ -1,6 +1,8 @@
 class EventbriteTicketClassHandler
   attr_reader :event_id, :saved_event
 
+  TIME_INTERVALS = [1, 2, 4, 6, 8, 10, 15, 20, 30]
+
   def initialize(event_id, saved_event)
     @event_id = event_id
     @saved_event = saved_event
@@ -32,14 +34,14 @@ class EventbriteTicketClassHandler
   end
 
   def queue_up_jobs!
-    [1, 2, 4, 6, 8, 10, 15, 20, 30].each do |num|
+    TIME_INTEREVALS.each do |num|
       queued_up_at = start_date + num.minutes
 
       sidekiq_id = EventTicketClassWorker.perform_at(queued_up_at, id: saved_event.id)
 
       SidekiqLog.create!(
         status:              'unprocessed',
-        eventbrite_event_id: saled_event.id,
+        eventbrite_event_id: sales_event.id,
         queued_up_at:        queued_up_at,
         sidekiq_id:          sidekiq_id
       )
@@ -47,7 +49,7 @@ class EventbriteTicketClassHandler
   end
 
   def never_queued_up?
-
+    SidekiqLog.where(event_id: sales_event.id).blank?
   end
 
   def sales_started?
