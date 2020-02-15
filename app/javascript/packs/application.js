@@ -7,7 +7,22 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require_tree('../../../vendor/assets/parallelism/parallelism-js')
+require("jquery")
+require("vendor/phantom-js/breakpoints.min.js")
+require("vendor/phantom-js/browser.min.js")
+require("vendor/phantom-js/main.js")
+require("vendor/phantom-js/util.js")
+
+
+
+
+
+// import './vendor/phantom-js/breakpoints.min.js'
+// import './vendor/phantom-js/browser.min.js'
+// import './vendor/phantom-js/main.js'
+// import './vendor/phantom-js/util.js'
+
+
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

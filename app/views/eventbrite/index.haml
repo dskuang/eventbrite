@@ -8,6 +8,38 @@
   %body.is-preload
     / Wrapper
     #wrapper
+      %header#header
+        .inner
+
+          / Nav
+          %nav
+            %ul
+              %li
+                %a{:href => "#menu"} Menu
+          / Menu
+          %nav#menu
+            %h2 Menu
+            %ul
+              %li
+                %a{:href => "index.html"} Home
+              %li
+                %a{:href => "generic.html"} Ipsum veroeros
+              %li
+                %a{:href => "generic.html"} Tempus etiam
+              %li
+                %a{:href => "generic.html"} Consequat dolor
+              %li
+                %a{:href => "elements.html"} Elements
+            .bottom-container.text-center
+              - if signed_in?
+                .bottom-inner.left.display-flex-vertical-center
+                  Hi #{current_user.username}
+                .bottom-inner.left.display-flex-vertical-center
+                  = button_to 'Log Out', session_destroy_url, method: 'post', class: 'inner-button'
+              - else
+                .display-flex-vertical-center.max-height
+                  = button_to 'Sign In', session_new_path, method: 'post', class: 'inner-button'
+
       / Main
       %section#main
         / Items
@@ -18,107 +50,23 @@
               A responsive portfolio site
               %br/
               template by HTML5 UP
-          %article.item.thumb.span-1
-            %h2 You really got me
-            %a.image{:href => "images/fulls/01.jpg"}
-              %img{:alt => "", src: "images/thumbs/01.jpg"}/
-          %article.item.thumb.span-2
-            %h2 Ad Infinitum
-            %a.image{:href => "images/fulls/02.jpg"}
-              %img{:alt => "", src: "images/thumbs/02.jpg"}/
-          %article.item.thumb.span-1
-            %h2 Different.
-            %a.image{:href => "images/fulls/03.jpg"}
-              %img{:alt => "", src: "images/thumbs/03.jpg"}/
-          %article.item.thumb.span-1
-            %h2 Elysium
-            %a.image{:href => "images/fulls/04.jpg"}
-              %img{:alt => "", src: "images/thumbs/04.jpg"}/
-          %article.item.thumb.span-3
-            %h2 Kingdom of the Wind
-            %a.image{:href => "images/fulls/05.jpg"}
-              %img{:alt => "", src: "images/thumbs/05.jpg"}/
-          %article.item.thumb.span-1
-            %h2 The Pursuit
-            %a.image{:href => "images/fulls/06.jpg"}
-              %img{:alt => "", src: "images/thumbs/06.jpg"}/
-          %article.item.thumb.span-2
-            %h2 Boundless
-            %a.image{:href => "images/fulls/07.jpg"}
-              %img{:alt => "", src: "images/thumbs/07.jpg"}/
-          %article.item.thumb.span-2
-            %h2 The Spectators
-            %a.image{:href => "images/fulls/08.jpg"}
-              %img{:alt => "", src: "images/thumbs/08.jpg"}/
-        / Items
+          - @first_half_events.each do |event|
+            %article{class: "item thumb span-#{rand(1..3)}"}
+              %h2 
+                = event.event_name
+              %a.image{href: event.altered_image_url, style: 'width: 100%; height: 100%'}
+                = image_tag(event.altered_image_url || '')
         .items
-          %article.item.thumb.span-3
-            %h2 Kingdom of the Wind
-            %a.image{:href => "images/fulls/05.jpg"}
-              %img{:alt => "", src: "images/thumbs/05.jpg"}/
-          %article.item.thumb.span-1
-            %h2 The Pursuit
-            %a.image{:href => "images/fulls/06.jpg"}
-              %img{:alt => "", src: "images/thumbs/06.jpg"}/
-          %article.item.thumb.span-2
-            %h2 Boundless
-            %a.image{:href => "images/fulls/07.jpg"}
-              %img{:alt => "", src: "images/thumbs/07.jpg"}/
-          %article.item.thumb.span-2
-            %h2 The Spectators
-            %a.image{:href => "images/fulls/08.jpg"}
-              %img{:alt => "", src: "images/thumbs/08.jpg"}/
-          %article.item.thumb.span-1
-            %h2 You really got me
-            %a.image{:href => "images/fulls/01.jpg"}
-              %img{:alt => "", src: "images/thumbs/01.jpg"}/
-          %article.item.thumb.span-2
-            %h2 Ad Infinitum
-            %a.image{:href => "images/fulls/02.jpg"}
-              %img{:alt => "", src: "images/thumbs/02.jpg"}/
-          %article.item.thumb.span-1
-            %h2 Different.
-            %a.image{:href => "images/fulls/03.jpg"}
-              %img{:alt => "", src: "images/thumbs/03.jpg"}/
-          %article.item.thumb.span-2
-            %h2 Kingdom of the Wind
-            %a.image{:href => "images/fulls/05.jpg"}
-              %img{:alt => "", src: "images/thumbs/05.jpg"}/
-          %article.item.thumb.span-1
-            %h2 Elysium
-            %a.image{:href => "images/fulls/04.jpg"}
-              %img{:alt => "", src: "images/thumbs/04.jpg"}/
+          - @second_half_events.each do |event|
+            %article{class: "item thumb span-#{rand(1..3)}"}
+              %h2 
+                = event.event_name
+              %a.image{href: event.altered_image_url, style: 'width: 100%; height: 100%;'}
+                = image_tag(event.altered_image_url || '')
+       
       / Footer
       %section#footer
         %section
-          %p
-            This is
-            = succeed "," do
-              %strong Parallelism
-            = succeed "." do
-              %a{:href => "http://html5up.net"} HTML5 UP
-            %a{:href => "http://html5up.net/license"} Creative Commons Attribution
-            license.
-        %section
-          %ul.icons
-            %li
-              %a.icon.brands.fa-twitter{:href => "#"}
-                %span.label Twitter
-            %li
-              %a.icon.brands.fa-instagram{:href => "#"}
-                %span.label Instagram
-            %li
-              %a.icon.brands.fa-facebook-f{:href => "#"}
-                %span.label Facebook
-            %li
-              %a.icon.brands.fa-dribbble{:href => "#"}
-                %span.label Dribbble
-            %li
-              %a.icon.solid.fa-envelope{:href => "#"}
-                %span.label Email
-          %ul.copyright
-            %li © Untitled
-            %li
-              Design:
-              %a{:href => "http://html5up.net"} HTML5 UP
+
+  
   

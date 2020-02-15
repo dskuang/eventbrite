@@ -322,6 +322,8 @@ input, select, textarea {
 		cursor: -ms-grab;
 		cursor: grab;
 		z-index: 10001;
+		top: 25%;
+    height: 50%;
 	}
 
 		.scrollZone.left {
