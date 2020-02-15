@@ -3,6 +3,7 @@ class EventbriteController < ApplicationController
   end
 
   def index
+    render layout: 'parallelism'
   end
 
   def event_data
