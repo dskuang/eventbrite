@@ -53,7 +53,7 @@ class EventbriteTicketClassHandler
   end
 
   def sales_started?
-    start_date < Time.current
+    start_date && start_date < Time.current
   end
 
   def start_date
