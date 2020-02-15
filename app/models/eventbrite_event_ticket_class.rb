@@ -7,6 +7,9 @@ class EventbriteEventTicketClass < ApplicationRecord
     class_name: 'EventbriteEvent',
     foreign_key: :eventbrite_event_id
 
+  UNAVAILABLE = 'UNAVAILABLE'
+  SOLD_OUT = 'SOLD_OUT'
+
   def self.formatted_data(data, eventbrite_event_id)
     {
       eventbrite_event_id:        eventbrite_event_id,

@@ -75,7 +75,16 @@ class EventbriteTicketClassHandler
   end
 
   def insert_ticket_log!(data, ticket_class)
+    return if sold_out_or_unavailable?(ticket_class)
+
     ticket_log_data = TicketClassLog.formatted_data(data, ticket_class.id)
-    TicketClassLog.create!(ticket_log_data)
+    TicketClassLog.create!(ticket_log_data) 
+  end
+
+  def sold_out_or_unavailable?(ticket_class)
+    [
+      EventbriteEventTicketClass::UNAVAILABLE,
+      EventbriteEventTicketClass::SOLD_OUT
+    ].include?(ticket_class.on_sale_status)
   end
 end
