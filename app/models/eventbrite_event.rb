@@ -40,6 +40,8 @@ class EventbriteEvent < ApplicationRecord
       minimum_ticket_price:   data['ticket_availability']['minimum_ticket_price'].try(:[], 'value'),
       maximum_ticket_price:   data['ticket_availability']['maximum_ticket_price'].try(:[], 'value'),
       start_sales_date:       data['event_sales_status']['start_sales_date'].try(:[], 'utc'),
+      original_image_url:     data['logo'].try(:[], 'original').try(:[], 'url'),
+      altered_image_url:      data['logo'].try(:[], 'url'),
       event_created_at:       data['created'],
       event_changed_at:       data['changed'],
       event_published_at:     data['published']

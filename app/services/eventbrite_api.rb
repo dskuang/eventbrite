@@ -57,7 +57,9 @@ class EventbriteApi
         'basic_inventory_info',
         'event_sales_status',
         'external_ticketing',
-        'music_properties'
+        'music_properties',
+        'logo',
+        'image'
       ].join(',')
     end
 
