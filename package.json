@@ -1,5 +1,5 @@
 {
-  "name": "stubhub",
+  "name": "eventbrite",
   "private": true,
   "dependencies": {
     "@rails/actioncable": "^6.0.0",

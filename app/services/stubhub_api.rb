@@ -53,7 +53,6 @@ class StubhubApi
   end
 
   def body
-    {
-    }
+    {}
   end
 end
