@@ -51,14 +51,14 @@
               %br/
               template by HTML5 UP
           - @first_half_events.each do |event|
-            %article{class: "item thumb span-#{rand(1..3)}"}
+            %article{class: "item thumb span-#{rand(2..4)}"}
               %h2 
                 = event.event_name
               %a.image{href: event.altered_image_url, style: 'width: 100%; height: 100%'}
                 = image_tag(event.altered_image_url || '')
         .items
           - @second_half_events.each do |event|
-            %article{class: "item thumb span-#{rand(1..3)}"}
+            %article{class: "item thumb span-#{rand(2..4)}"}
               %h2 
                 = event.event_name
               %a.image{href: event.altered_image_url, style: 'width: 100%; height: 100%;'}

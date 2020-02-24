@@ -76,9 +76,20 @@ class EventbriteTicketClassHandler
 
   def insert_ticket_log!(data, ticket_class)
     return if sold_out_or_unavailable?(ticket_class)
+    return if already_logged_not_yet_on_sale?(ticket_class)
 
     ticket_log_data = TicketClassLog.formatted_data(data, ticket_class.id)
     TicketClassLog.create!(ticket_log_data) 
+  end
+
+  def already_logged_not_yet_on_sale?(ticket_class)
+    logs = TicketClassLog.where(eventbrite_ticket_class_id: ticket_class.id).order(id: :asc)
+    last_log = logs.last
+  
+    last_log && (
+      last_log.on_sale_status == EventbriteEventTicketClass::NOT_YET_ON_SALE && 
+      ticket_class.on_sale_status == EventbriteEventTicketClass::NOT_YET_ON_SALE
+    )
   end
 
   def sold_out_or_unavailable?(ticket_class)

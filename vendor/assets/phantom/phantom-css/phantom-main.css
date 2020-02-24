@@ -30,6 +30,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;}
 
 body {
+	/* background: image-url(asset-path('background.jpg')) no-repeat; */
 	line-height: 1;
 }
 

@@ -9,6 +9,7 @@ class EventbriteEventTicketClass < ApplicationRecord
 
   UNAVAILABLE = 'UNAVAILABLE'
   SOLD_OUT = 'SOLD_OUT'
+  NOT_YET_ON_SALE = 'NOT_YET_ON_SALE'
 
   def self.formatted_data(data, eventbrite_event_id)
     {
