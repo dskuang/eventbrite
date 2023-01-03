@@ -16,7 +16,7 @@ gem 'webpacker', github: "rails/webpacker"
 
 gem 'sidekiq'
 
-gem 'httparty', '0.17.3'
+gem 'httparty', '0.21.0'
 
 gem 'haml'
 
